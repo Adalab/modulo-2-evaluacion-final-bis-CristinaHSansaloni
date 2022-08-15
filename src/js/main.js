@@ -27,7 +27,7 @@ function listenerCards() {
   function renderUsers(userData) {
     let html = '';
 
-    for (const userData of data) {
+    for (const userData of data) {//for más if tengo dudas
         if (userData.isFriend === true) {//si es amigo, con clase css
           html += `
           <li class="js_card card card_selected" id="${userData.id}">
@@ -36,7 +36,7 @@ function listenerCards() {
               <h4 class="card__sub">${userData.city}</h4>
               <h4 class="card__sub">${userData.username}</h4>
           </li>`;
-          userData.isFriend === false; //prueba
+
         } 
         else {
           html += `
@@ -46,8 +46,6 @@ function listenerCards() {
               <h4 class="card__sub">${userData.city}</h4>
               <h4 class="card__sub">${userData.username}</h4>
           </li>`;
-          userData.isFriend = true; //prueba
-          
         }
     
     
@@ -60,8 +58,8 @@ function listenerCards() {
  //Función manejadora del evento
 function handleClick(event) {
     //console.log(event.currentTarget.id);
-    const idSelected = parseInt(event.currentTarget.id);
-    console.log(idSelected);
+    const idSelected = event.currentTarget.id;
+    //console.log(idSelected);
     const cardFound = data.find((userData) => userData.id === idSelected);
     console.log(cardFound);
 
@@ -71,6 +69,8 @@ function handleClick(event) {
     else {
         cardFound.isFriend = true;
     }
+    renderUsers();
+    listenerCards();
 }
 
 
@@ -81,10 +81,10 @@ function getDataApi() {
     fetch('https://randomuser.me/api/?results=10')
     .then((response) => response.json()) 
     .then((dataAPI) => {
-      //console.log(dataAPI);
+      console.log(dataAPI);
   
       data = dataAPI.results.map((eachUser) => ({
-        id: eachUser.id.value,
+        id: eachUser.id.name,
         fullName: eachUser.name.first + ' ' + eachUser.name.last,
         city: eachUser.location.city,
         photo: eachUser.picture.medium,
