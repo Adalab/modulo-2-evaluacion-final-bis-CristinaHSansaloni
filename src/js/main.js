@@ -12,7 +12,7 @@ let data = [];
 fetch('https://randomuser.me/api/?results=10')
   .then((response) => response.json()) 
   .then((dataAPI) => {
-    console.log(dataAPI);
+    //console.log(dataAPI);
 
     data = dataAPI.results.map((eachUser) => ({
       //id: eachUser.id.value,
@@ -23,8 +23,8 @@ fetch('https://randomuser.me/api/?results=10')
       isFriend: false,
     }));
 
-    console.log(data);
-
+    //console.log(data);
+    
     renderUsers();
     //addCardListeners(); //vuelvo a escuchar
     
@@ -33,6 +33,19 @@ fetch('https://randomuser.me/api/?results=10')
 
 
 
-  function renderUsers() {
+  function renderUsers(userData) {
+    let html = '';
 
+    for( const userData of data) {
+        html += `
+        <li>
+          <article class="js_card card">
+            <img class="card__img" src=${userData.photo}> 
+            <h2 class="card__title">${userData.fullName}</h2>
+            <h4 class="card__sub">${userData.city}</h4>
+            <h4 class="card__sub">${userData.username}</h4>
+          </article>
+        </li>`; 
+    }
+    listUl.innerHTML = html;
   }
