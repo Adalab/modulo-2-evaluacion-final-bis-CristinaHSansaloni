@@ -12,7 +12,12 @@ let data = [];
 
 //función rellenar los id vacíos
 /*function idEmpty(userData) {
-  if(userData.id === '')
+  if(userData.id === '') {
+    userData.id === 'ACHS';
+  }
+  else {
+    //mostrar
+  }
 }*/
 
 
@@ -107,10 +112,10 @@ function getDataApi() {
 }
 
 //para guardar lo que hay en pantalla en LS
-function saveMyData() {
+/*function saveMyData() {
   let myDataArray = [];
   myDataArray.push
-}
+}*/
 
 
 
