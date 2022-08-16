@@ -4,20 +4,17 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <include src="./partials/link.html"></include>
     <link rel="stylesheet" href="./assets/css/main.css" />
     <title>Evaluación final bis</title>
   </head>
-  <body>
-    <header>
-      <h1>Twitterlab</h1>
-    </header>
+  <body class="container">
+    <include src="./partials/header.html"></include>
     <main>
-      <button type="button">Guardar datos</button>
-      <button type="button">Recuperar datos</button>
-      <ul class="js_list">
-        <li></li>
-      </ul>
+      <include src="./partials/form.html"></include>
+      <include src="./partials/cards.html"></include>
     </main>
+    <include src="./partials/footer.html"></include>
     <script src="./assets/js/main.js"></script>
   </body>
 </html>

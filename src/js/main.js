@@ -2,12 +2,18 @@
 
 //De html
 const listUl = document.querySelector('.js_list');
+const saveButton = document.querySelector('.js_save');
+const recoverButton = document.querySelector('.js_recover');
 
-//Globales
+//Global
 let data = [];
 
 
 
+//función rellenar los id vacíos
+/*function idEmpty(userData) {
+  if(userData.id === '')
+}*/
 
 
 
@@ -27,10 +33,10 @@ function listenerCards() {
   function renderUsers(userData) {
     let html = '';
 
-    for (const userData of data) {//for más if tengo dudas
-        if (userData.isFriend === true) {//si es amigo, con clase css
+    for (const userData of data) {
+        if (userData.isFriend === true) {
           html += `
-          <li class="js_card card card_selected" id="${userData.id}">
+          <li class="js_card card card_selected" id="${userData.id}" isFriend="${userData.isFriend}">
               <img class="card__img" src=${userData.photo}> 
               <h2 class="card__title">${userData.fullName}</h2>
               <h4 class="card__sub">${userData.city}</h4>
@@ -40,7 +46,7 @@ function listenerCards() {
         } 
         else {
           html += `
-          <li class="js_card card" id="${userData.id}">
+          <li class="js_card card" id="${userData.id}" isFriend="${userData.isFriend}">
               <img class="card__img" src=${userData.photo}> 
               <h2 class="card__title">${userData.fullName}</h2>
               <h4 class="card__sub">${userData.city}</h4>
@@ -48,9 +54,9 @@ function listenerCards() {
           </li>`;
         }
     
-    
       }
     listUl.innerHTML = html;
+    listenerCards();
   }
 
 
@@ -61,7 +67,7 @@ function handleClick(event) {
     const idSelected = event.currentTarget.id;
     //console.log(idSelected);
     const cardFound = data.find((userData) => userData.id === idSelected);
-    console.log(cardFound);
+    //console.log(cardFound);
 
     if (cardFound.isFriend === true) {
         cardFound.isFriend = false;
@@ -81,7 +87,7 @@ function getDataApi() {
     fetch('https://randomuser.me/api/?results=10')
     .then((response) => response.json()) 
     .then((dataAPI) => {
-      console.log(dataAPI);
+      //console.log(dataAPI);
   
       data = dataAPI.results.map((eachUser) => ({
         id: eachUser.id.name,
@@ -92,14 +98,49 @@ function getDataApi() {
         isFriend: false,
       }));
   
-      //console.log(data);
+      console.log(data);
       
       renderUsers();
-      listenerCards();
+      
     });
   
 }
-  
+
+//para guardar lo que hay en pantalla en LS
+function saveMyData() {
+  let myDataArray = [];
+  myDataArray.push
+}
+
+
+
+
+function handleClickSave() {
+  localStorage.setItem('dataFrom', JSON.stringify(data));
+  console.log('Esta guardando');
+}
+
+
+function handleClickRecover() {
+  const dataLocalStorage = JSON.parse(localStorage.getItem('data'));
+  console.log(dataLocalStorage);
+
+  if (dataLocalStorage === null) {//si está vacio, lo guardo
+    console.log('No hay data en LS');
+    localStorage.setItem('dataFrom', JSON.stringify(data));
+  }
+  else {
+    console.log('Está la variable');
+    renderUsers();
+    //pintalo 
+  }
+  //localStorage.clear();
+}
+
+
+
+saveButton.addEventListener('click', handleClickSave);
+recoverButton.addEventListener('click', handleClickRecover);
 
 getDataApi();
 

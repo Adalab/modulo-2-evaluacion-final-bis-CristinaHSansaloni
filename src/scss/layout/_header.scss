@@ -4,3 +4,14 @@
   margin-bottom: 3rem;
 }
 */
+
+.title {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+  font-weight: 700;
+  font-size: 3rem;
+  color: $color-button;
+  letter-spacing: 0.5px;
+}
