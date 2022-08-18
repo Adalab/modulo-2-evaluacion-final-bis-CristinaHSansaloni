@@ -19,8 +19,13 @@ function listenerCards() {
               <img class="card__img" src=${userData.photo}> 
               <h2 class="card__title">${userData.fullName}</h2>
               <h4 class="card__sub">${userData.city}</h4>
-              <h4 class="card__sub">${userData.username}</h4>
-          </li>`;
+              <h4 class="card__sub">${userData.username}</h4>`;
+          if (userData.location === 'Australia' ||  userData.location === 'Portugal') {
+            html += `
+            <a href="mailto:${userData.email}" class="card__email">${userData.email}</a></li>`;
+          }
+              
+          
   
         } 
         else {
@@ -29,8 +34,12 @@ function listenerCards() {
               <img class="card__img" src=${userData.photo}> 
               <h2 class="card__title">${userData.fullName}</h2>
               <h4 class="card__sub">${userData.city}</h4>
-              <h4 class="card__sub">${userData.username}</h4>
-          </li>`;
+              <h4 class="card__sub">${userData.username}</h4>`;
+              if (userData.location === 'Australia'|| userData.location === 'Portugal') {
+                html += `
+                <a href="mailto:${userData.email}" class="card__email">${userData.email}</a></li>`;
+              }
+          
         }
     
       }

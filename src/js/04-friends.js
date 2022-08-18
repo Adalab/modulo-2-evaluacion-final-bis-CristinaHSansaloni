@@ -9,6 +9,11 @@ function handleClick(event) {
     else {
         cardFound.isFriend = true;
     }
+   
     renderUsers();
     listenerCards();
 }
+
+
+
+
